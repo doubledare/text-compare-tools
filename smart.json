@@ -1,0 +1,9 @@
+{
+  "name": "text-tools",
+  "description": "A collection of text comparison tools.",
+  "homepage": "https://github.com/doubledare/text-tools",
+  "author": "Joc O'Connor <jocphone@gmail.com",
+  "version": "0.0.1",
+  "git": "https://github.com/doubledare/text-tools.git",
+  "packages": {}
+}
