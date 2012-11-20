@@ -23,11 +23,11 @@ TEXT_TOOLS.doubleMetaphone = ( str )->
     if iter < max_iter
       ++iter
     else
-      console.log "MAX ITERATIONS for '#{original}'"
+      # console.log "MAX ITERATIONS for '#{original}'"
       break
     break if current > str.length
     [a,b,c] = TEXT_TOOLS._double_metaphone_lookup(original, current, length, last)
-    console.log " returns", a, b, c
+    # console.log " returns", a, b, c
     primary.push( a ) if a?
     secondary.push( b ) if b?
     current += c if c?
@@ -42,15 +42,15 @@ TEXT_TOOLS._is_slavo_germanic = ( str )->
   str.match( /W|K|CZ|WITZ/g )
 
 TEXT_TOOLS._double_metaphone_lookup = ( str, pos, length, last )->
-  console.log "_double_metaphone_lookup '#{str}'", pos, length, last
+  # console.log "_double_metaphone_lookup '#{str}'", pos, length, last
   if TEXT_TOOLS._is_vowel( str.substr(pos, 1) )
-    console.log "/^A|E|I|O|U|Y$/"
+    # console.log "/^A|E|I|O|U|Y$/"
     if pos == 0
       return ['A', 'A', 1]
     else
       return [null, null, 1]
   else
-    console.log "switch #{str.substr(pos, 1)}"
+    # console.log "switch #{str.substr(pos, 1)}"
     switch str.substr(pos, 1)
       when 'B'
         return ['P', 'P', (if str.substr( pos + 1, 1) == 'B' then 2 else 1)]
@@ -64,7 +64,6 @@ TEXT_TOOLS._double_metaphone_lookup = ( str, pos, length, last )->
         else if 'CHIA' == str.substr( pos, 4 )
           return ['K', 'K', 2]
         else if 'CH' == str.substr( pos, 2 )
-          console.log "-----> CH triggered!!", str, pos
           if pos > 0 && 'CHAE' == str.substr( pos, 4 )
             return ['K', 'X', 2]
           else if pos == 0 && ( ['HARAC', 'HARIS'].indexOf(str.substr( pos + 1, 5 )) >= 0 ||
@@ -101,8 +100,6 @@ TEXT_TOOLS._double_metaphone_lookup = ( str, pos, length, last )->
             return ['K', 'K', 3]
           else
             return ['K', 'K', (if str.substr( pos + 1, 1 ).match( /^C|K|Q$/ ) && (['CE','CI'].indexOf(str.substr( pos + 1, 2 )) < 0) then 2 else 1)]
-            # console.log  "THINGY"
-            # return ['K', 'K', 1]
       when 'D'
         if 'DG' == str.substr( pos, 2 )
           if str.substr( pos + 2, 1 ).match(/^I|E|Y$/)

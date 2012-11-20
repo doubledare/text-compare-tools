@@ -28,14 +28,12 @@ TEXT_TOOLS.doubleMetaphone = function(str) {
     if (iter < max_iter) {
       ++iter;
     } else {
-      console.log("MAX ITERATIONS for '" + original + "'");
       break;
     }
     if (current > str.length) {
       break;
     }
     _ref = TEXT_TOOLS._double_metaphone_lookup(original, current, length, last), a = _ref[0], b = _ref[1], c = _ref[2];
-    console.log(" returns", a, b, c);
     if (a != null) {
       primary.push(a);
     }
@@ -61,16 +59,13 @@ TEXT_TOOLS._is_slavo_germanic = function(str) {
 
 TEXT_TOOLS._double_metaphone_lookup = function(str, pos, length, last) {
   var current, pri, sec, _ref;
-  console.log("_double_metaphone_lookup '" + str + "'", pos, length, last);
   if (TEXT_TOOLS._is_vowel(str.substr(pos, 1))) {
-    console.log("/^A|E|I|O|U|Y$/");
     if (pos === 0) {
       return ['A', 'A', 1];
     } else {
       return [null, null, 1];
     }
   } else {
-    console.log("switch " + (str.substr(pos, 1)));
     switch (str.substr(pos, 1)) {
       case 'B':
         return ['P', 'P', (str.substr(pos + 1, 1) === 'B' ? 2 : 1)];
@@ -84,7 +79,6 @@ TEXT_TOOLS._double_metaphone_lookup = function(str, pos, length, last) {
         } else if ('CHIA' === str.substr(pos, 4)) {
           return ['K', 'K', 2];
         } else if ('CH' === str.substr(pos, 2)) {
-          console.log("-----> CH triggered!!", str, pos);
           if (pos > 0 && 'CHAE' === str.substr(pos, 4)) {
             return ['K', 'X', 2];
           } else if (pos === 0 && (['HARAC', 'HARIS'].indexOf(str.substr(pos + 1, 5)) >= 0 || ['HOR', 'HYM', 'HIA', 'HEM'].indexOf(str.substr(pos + 1, 3)) >= 0) && str.substr(0, 5) !== 'CHORE') {
@@ -324,7 +318,6 @@ TEXT_TOOLS._double_metaphone_lookup = function(str, pos, length, last) {
         if ((last === pos && TEXT_TOOLS._is_vowel(str.substr(pos - 1, 1))) || 'SCH' === str.substr(0, 3) || str.substr(pos - 1, 5).match(/^EWSKI|EWSKY|OWSKI|OWSKY$/)) {
           return [pri, (sec != null ? "" + sec + "F" : "F"), 1];
         } else if (str.substr(pos, 4).match(/^WI(C|T)Z$/)) {
-          console.log("--------------------> wic(c|t)z");
           return ["" + (pri != null ? pri : '') + "TS", "" + (sec != null ? sec : '') + "FX", 4];
         } else {
           return [pri, sec, 1];
