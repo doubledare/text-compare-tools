@@ -4,7 +4,7 @@ text-compare-tools
 Overview
 --------
 
-Initially a port of threedaymonk's text library which was written in ruby.
+Initially a javascript/coffeescript port of threedaymonk's text library, written in ruby. https://github.com/threedaymonk/text
 Currently has code for Soundex, Metaphone, Double Metaphone and Whitespace Similarity.
 Was developed as a smart package for the Meteor framework http://meteor.com
 
