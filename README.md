@@ -11,7 +11,41 @@ Was developed as a smart package for the Meteor framework http://meteor.com
 Usage
 -----
 
-Usage details to go in here.
+	in your smart.json packages field add an entry for text tools
+
+	"text-compare-tools": {
+		"git": "https://github.com/doubledare/text-compare-tools.git"
+	}
+
+Then run:
+
+	mrt list
+
+and make sure that 'text-compare-tools' is in the list.
+
+Next run:
+
+	mrt add text-compare-tools
+
+You can then run 'mrt list --using' to make sure you have the package.
+
+Text Tools provides several methods to help with text comparison.
+
+	Soundex
+	Metaphone
+	Double Metaphone
+	White space similarity
+	With more to follow..
+
+To use TEXT_TOOLS, put something similar to the following in your code:
+
+	TEXT_TOOLS.doubleMetaphone( "Rachel" );
+
+And you will get back the primary and secondary results:
+
+	["RXL", RKL]
+
+For many words you may get a null value for the secondary result.
 
 Testing
 -------
